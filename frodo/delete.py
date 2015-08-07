@@ -12,5 +12,6 @@ class DeleteMixin:
         """
         cursor = self.current_cursor()
         args_str = ','.join(cursor.mogrify("%s", (x, )) for x in order_list)
+        #TODO: security problem here:
         cursor.execute(("delete from {}_ea_order "
                         "where id in ({})").format(PREFIX, args_str))

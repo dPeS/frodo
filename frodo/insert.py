@@ -21,14 +21,10 @@ class InsertMixin:
         creates new type for container
         """
         cursor = self.current_cursor()
-        cursor.execute("insert into {}_ea_type("
-                       "container_id, code, max_quantity) "
-                       "values({}, {}, {})".format(PREFIX,
-                                                   container_id,
-                                                   type_code,
-                                                   max_quantity
-                                                   )
-                       )
+        cursor.execute(("insert into {}_ea_type("
+                        "container_id, code, max_quantity) "
+                        "values(%s, %s, %s)").format(PREFIX),
+                       (container_id, type_code, max_quantity))
 
     def _sql_insert_order(self, container_id, order_list):
         """
