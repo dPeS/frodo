@@ -5,6 +5,7 @@ typical client has to use only ONE of those interfaces
 from frodo.abstraction import FrodoBasicEngine, FrodoCtxManager
 from frodo import utils
 
+
 def plain():
     """
     plain interface
@@ -13,13 +14,15 @@ def plain():
     connection = utils.get_connection_from_env()
     return FrodoBasicEngine(connection)
 
+
 def managed():
     """
     managed interface
     returns context manager
     """
     connection = utils.get_connection_from_env()
-    return FrodoCtxManager( FrodoBasicEngine(connection) )
+    return FrodoCtxManager(FrodoBasicEngine(connection))
+
 
 def django():
     """
@@ -31,4 +34,4 @@ def django():
             db.setup_frodo_in_database()
     """
     from django.db import connection
-    return FrodoCtxManager( FrodoBasicEngine(connection) )
+    return FrodoCtxManager(FrodoBasicEngine(connection))

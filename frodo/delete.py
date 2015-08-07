@@ -1,5 +1,6 @@
 from frodo.constants import FRODO_MODULE_DATABASE_PREFIX as PREFIX
 
+
 class DeleteMixin:
     """
     all delete queries should be written here
@@ -11,4 +12,5 @@ class DeleteMixin:
         """
         cursor = self.current_cursor()
         args_str = ','.join(cursor.mogrify("%s", (x, )) for x in order_list)
-        cursor.execute("delete from {}_ea_order where id in ({})".format(PREFIX, args_str))
+        cursor.execute(("delete from {}_ea_order "
+                        "where id in ({})").format(PREFIX, args_str))

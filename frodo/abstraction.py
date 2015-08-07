@@ -1,7 +1,7 @@
 from frodo import setup
-from frodo import select
 from frodo import insert
 from frodo import delete
+
 
 class FrodoCtxManager:
     """
@@ -85,7 +85,6 @@ class Base:
 
 class FrodoBasicEngine(Base,
                        setup.InitDatabaseMixin,
-                       select.SelectMixin,
                        insert.InsertMixin,
                        delete.DeleteMixin):
     """
@@ -134,7 +133,7 @@ class FrodoBasicEngine(Base,
         """
         return self._sql_delete_type_by_id(container_id, type_code)
 
-    def _list_container_types(self, container_id):
+    def _list_container_types(self, container_id, type_code):
         """
         lists all types with corresponding quantities for particular container
         returns list of (type_code, quantity)
