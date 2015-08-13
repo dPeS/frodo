@@ -9,7 +9,7 @@ def split_path(path):
 
 
 def request_handler(method, route, env):
-    payload = json.loads(env['wsgi.input'].getvalue())
+    #payload = json.loads(env['wsgi.input'].getvalue())
 
     return (
         '200 OK',
